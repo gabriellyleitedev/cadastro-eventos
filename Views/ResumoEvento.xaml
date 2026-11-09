@@ -1,40 +1,85 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:CadastroEventos.Models"
              x:Class="CadastroEventos.Views.ResumoEvento"
              x:DataType="models:Evento"
+             Style="{StaticResource Pagina}"
              Title="Resumo do Evento">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="16">
+        <VerticalStackLayout Padding="24,32"
+                             Spacing="20"
+                             MaximumWidthRequest="720">
 
-            <Label Text="{Binding Nome}"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   TextColor="{StaticResource Primary}" />
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Resumo do evento" Style="{StaticResource Rotulo}" />
+                <Label Text="{Binding Nome}" Style="{StaticResource Titulo}" />
+                <Label Text="{Binding Local, StringFormat='Local: {0}'}" Style="{StaticResource Subtitulo}" />
+            </VerticalStackLayout>
 
-            <Border Padding="16" StrokeShape="RoundRectangle 10">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="{Binding Local, StringFormat='Local: {0}'}" />
-                    <Label Text="{Binding DataInicio, StringFormat='Início: {0:dddd, dd/MM/yyyy}'}" />
-                    <Label Text="{Binding DataTermino, StringFormat='Término: {0:dddd, dd/MM/yyyy}'}" />
-                    <Label Text="{Binding DuracaoEmDias, StringFormat='Duração: {0} dia(s) de evento'}" />
-                    <Label Text="{Binding Intervalo, StringFormat='Intervalo entre as datas (TimeSpan): {0:%d} dia(s)'}" />
+            <Border Padding="24" StrokeThickness="0" StrokeShape="RoundRectangle 20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#4F46E5" Offset="0" />
+                        <GradientStop Color="#7C3AED" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Shadow>
+                    <Shadow Brush="#4F46E5" Offset="0,10" Radius="24" Opacity="0.25" />
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Custo total" TextColor="#E0E7FF" FontSize="14" />
+                    <Label Text="{Binding CustoTotal, StringFormat='{0:C}'}"
+                           TextColor="White"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="36" />
+                    <HorizontalStackLayout Spacing="4">
+                        <Label Text="{Binding NumeroParticipantes, StringFormat='{0:N0} participantes'}"
+                               TextColor="#E0E7FF" FontSize="14" />
+                        <Label Text="{Binding CustoPorParticipante, StringFormat='× {0:C} por pessoa'}"
+                               TextColor="#E0E7FF" FontSize="14" />
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="16" StrokeShape="RoundRectangle 10">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="{Binding NumeroParticipantes, StringFormat='Participantes: {0:N0}'}" />
-                    <Label Text="{Binding CustoPorParticipante, StringFormat='Custo por participante: {0:C}'}" />
-                    <Label Text="{Binding CustoTotal, StringFormat='Custo total: {0:C}'}"
-                           FontSize="20"
-                           FontAttributes="Bold" />
-                </VerticalStackLayout>
-            </Border>
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="14" RowSpacing="14">
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Início" Style="{StaticResource Rotulo}" />
+                        <Label Text="{Binding DataInicio, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource Valor}" />
+                        <Label Text="{Binding DataInicio, StringFormat='{0:dddd}'}" Style="{StaticResource Subtitulo}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Button Text="Voltar ao cadastro" Clicked="Button_Clicked" />
+                <Border Grid.Column="1" Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Término" Style="{StaticResource Rotulo}" />
+                        <Label Text="{Binding DataTermino, StringFormat='{0:dd/MM/yyyy}'}" Style="{StaticResource Valor}" />
+                        <Label Text="{Binding DataTermino, StringFormat='{0:dddd}'}" Style="{StaticResource Subtitulo}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Duração" Style="{StaticResource Rotulo}" />
+                        <Label Text="{Binding DuracaoEmDias, StringFormat='{0} dia(s)'}" Style="{StaticResource Valor}" />
+                        <Label Text="contando início e término" Style="{StaticResource Subtitulo}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Intervalo (TimeSpan)" Style="{StaticResource Rotulo}" />
+                        <Label Text="{Binding Intervalo, StringFormat='{0:%d} dia(s)'}" Style="{StaticResource Valor}" />
+                        <Label Text="diferença entre as datas" Style="{StaticResource Subtitulo}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Button Text="Voltar ao cadastro"
+                    Style="{StaticResource BotaoSecundario}"
+                    Clicked="Button_Clicked" />
 
         </VerticalStackLayout>
     </ScrollView>

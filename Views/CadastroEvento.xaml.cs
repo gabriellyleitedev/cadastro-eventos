@@ -38,7 +38,9 @@ public partial class CadastroEvento : ContentPage
             if (!int.TryParse(txt_participantes.Text, out int participantes) || participantes <= 0)
                 throw new Exception("Informe um número de participantes válido.");
 
-            if (!double.TryParse(txt_custo.Text, out double custo) || custo < 0)
+            string textoCusto = (txt_custo.Text ?? string.Empty).Replace('.', ',');
+
+            if (!double.TryParse(textoCusto, out double custo) || custo < 0)
                 throw new Exception("Informe um custo por participante válido.");
 
             Evento evento = new Evento

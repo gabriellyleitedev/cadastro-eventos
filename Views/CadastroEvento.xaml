@@ -2,44 +2,101 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CadastroEventos.Views.CadastroEvento"
+             Style="{StaticResource Pagina}"
              Title="Cadastro de Evento">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="12">
+        <VerticalStackLayout Padding="24,32"
+                             Spacing="20"
+                             MaximumWidthRequest="720">
 
-            <Label Text="Preencha os dados do evento"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="{StaticResource Primary}" />
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Novo evento" Style="{StaticResource Titulo}" />
+                <Label Text="Preencha os dados abaixo para gerar o resumo do evento."
+                       Style="{StaticResource Subtitulo}" />
+            </VerticalStackLayout>
 
-            <Label Text="Nome do evento" />
-            <Entry x:Name="txt_nome" Placeholder="Ex.: Semana de Tecnologia" />
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Informações gerais" Style="{StaticResource TituloSecao}" />
 
-            <Label Text="Local do evento" />
-            <Entry x:Name="txt_local" Placeholder="Ex.: Auditório da Etec" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Nome do evento" Style="{StaticResource Rotulo}" />
+                        <Border Style="{StaticResource CampoBorda}">
+                            <Entry x:Name="txt_nome"
+                                   Style="{StaticResource Campo}"
+                                   Placeholder="Ex.: Semana de Tecnologia" />
+                        </Border>
+                    </VerticalStackLayout>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto">
-                <Label Text="Data de início" />
-                <DatePicker x:Name="dtpck_inicio"
-                            Grid.Row="1"
-                            Format="dd/MM/yyyy"
-                            DateSelected="dtpck_inicio_DateSelected" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Local do evento" Style="{StaticResource Rotulo}" />
+                        <Border Style="{StaticResource CampoBorda}">
+                            <Entry x:Name="txt_local"
+                                   Style="{StaticResource Campo}"
+                                   Placeholder="Ex.: Auditório da Etec" />
+                        </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
 
-                <Label Grid.Column="1" Text="Data de término" />
-                <DatePicker x:Name="dtpck_termino"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Format="dd/MM/yyyy" />
-            </Grid>
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Período" Style="{StaticResource TituloSecao}" />
 
-            <Label Text="Número de participantes" />
-            <Entry x:Name="txt_participantes" Keyboard="Numeric" Placeholder="Ex.: 120" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Data de início" Style="{StaticResource Rotulo}" />
+                            <Border Style="{StaticResource CampoBorda}">
+                                <DatePicker x:Name="dtpck_inicio"
+                                            Style="{StaticResource CampoData}"
+                                            Format="dd/MM/yyyy"
+                                            DateSelected="dtpck_inicio_DateSelected" />
+                            </Border>
+                        </VerticalStackLayout>
 
-            <Label Text="Custo por participante (R$)" />
-            <Entry x:Name="txt_custo" Keyboard="Numeric" Placeholder="Ex.: 45,90" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="Data de término" Style="{StaticResource Rotulo}" />
+                            <Border Style="{StaticResource CampoBorda}">
+                                <DatePicker x:Name="dtpck_termino"
+                                            Style="{StaticResource CampoData}"
+                                            Format="dd/MM/yyyy" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
 
-            <Button Text="Cadastrar evento"
-                    Margin="0,12,0,0"
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Participação" Style="{StaticResource TituloSecao}" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Participantes" Style="{StaticResource Rotulo}" />
+                            <Border Style="{StaticResource CampoBorda}">
+                                <Entry x:Name="txt_participantes"
+                                       Style="{StaticResource Campo}"
+                                       Keyboard="Numeric"
+                                       Placeholder="Ex.: 120" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="Custo por participante (R$)" Style="{StaticResource Rotulo}" />
+                            <Border Style="{StaticResource CampoBorda}">
+                                <Entry x:Name="txt_custo"
+                                       Style="{StaticResource Campo}"
+                                       Keyboard="Numeric"
+                                       Placeholder="Ex.: 45,90" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Gerar resumo"
+                    Style="{StaticResource BotaoPrincipal}"
                     Clicked="Button_Clicked" />
 
         </VerticalStackLayout>

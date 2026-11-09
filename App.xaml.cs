@@ -13,6 +13,8 @@ public partial class App : Application
 		CultureInfo.CurrentUICulture = cultura;
 
 		InitializeComponent();
+
+		UserAppTheme = AppTheme.Light;
 	}
 
 	protected override Window CreateWindow(IActivationState? activationState)

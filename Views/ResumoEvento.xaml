@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CadastroEventos.Models"
+             x:Class="CadastroEventos.Views.ResumoEvento"
+             x:DataType="models:Evento"
+             Title="Resumo do Evento">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label Text="{Binding Nome}"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}" />
+
+            <Border Padding="16" StrokeShape="RoundRectangle 10">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="{Binding Local, StringFormat='Local: {0}'}" />
+                    <Label Text="{Binding DataInicio, StringFormat='Início: {0:dddd, dd/MM/yyyy}'}" />
+                    <Label Text="{Binding DataTermino, StringFormat='Término: {0:dddd, dd/MM/yyyy}'}" />
+                    <Label Text="{Binding DuracaoEmDias, StringFormat='Duração: {0} dia(s) de evento'}" />
+                    <Label Text="{Binding Intervalo, StringFormat='Intervalo entre as datas (TimeSpan): {0:%d} dia(s)'}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16" StrokeShape="RoundRectangle 10">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="{Binding NumeroParticipantes, StringFormat='Participantes: {0:N0}'}" />
+                    <Label Text="{Binding CustoPorParticipante, StringFormat='Custo por participante: {0:C}'}" />
+                    <Label Text="{Binding CustoTotal, StringFormat='Custo total: {0:C}'}"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Voltar ao cadastro" Clicked="Button_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

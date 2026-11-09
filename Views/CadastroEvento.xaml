@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroEventos.Views.CadastroEvento"
+             Title="Cadastro de Evento">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="Preencha os dados do evento"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}" />
+
+            <Label Text="Nome do evento" />
+            <Entry x:Name="txt_nome" Placeholder="Ex.: Semana de Tecnologia" />
+
+            <Label Text="Local do evento" />
+            <Entry x:Name="txt_local" Placeholder="Ex.: Auditório da Etec" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto">
+                <Label Text="Data de início" />
+                <DatePicker x:Name="dtpck_inicio"
+                            Grid.Row="1"
+                            Format="dd/MM/yyyy"
+                            DateSelected="dtpck_inicio_DateSelected" />
+
+                <Label Grid.Column="1" Text="Data de término" />
+                <DatePicker x:Name="dtpck_termino"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Format="dd/MM/yyyy" />
+            </Grid>
+
+            <Label Text="Número de participantes" />
+            <Entry x:Name="txt_participantes" Keyboard="Numeric" Placeholder="Ex.: 120" />
+
+            <Label Text="Custo por participante (R$)" />
+            <Entry x:Name="txt_custo" Keyboard="Numeric" Placeholder="Ex.: 45,90" />
+
+            <Button Text="Cadastrar evento"
+                    Margin="0,12,0,0"
+                    Clicked="Button_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
